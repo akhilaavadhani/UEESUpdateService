@@ -1,6 +1,5 @@
 package com.sakha.services.config;
 
-import com.sakha.services.pojo.Queues;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.spring.javaconfig.SingleRouteCamelConfiguration;
@@ -12,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.jms.ConnectionFactory;
 
-import static com.sakha.services.pojo.Queues.QueueName.*;
+import static com.sakha.services.pojo.Queues.QueueName.PPP_ES;
 
 /**
  * Created by welcome on 29/12/15.
@@ -38,7 +37,6 @@ public class ActiveMQConfig extends SingleRouteCamelConfiguration {
             @Override
             public void configure() throws Exception {
                 from(PPP_ES.getQueueName()).to("bean:pppESUpdater?method=updateES");
-                //from(QueueName.PPP_MONGO.queueName).to("bean:pppMongoUpdater?method=updateMongo");
             }
         };
     }
